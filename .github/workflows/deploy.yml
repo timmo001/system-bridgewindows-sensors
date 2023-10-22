@@ -9,12 +9,27 @@ on:
   workflow_dispatch:
 
 jobs:
+  build-dotnet:
+    uses: timmo001/workflows/.github/workflows/build-msbuild-windows.yml@master
+    with:
+      code-path: WindowsSensors
+      output-name: windowssensors-build
+      output-path: WindowsSensors/bin
+      package: SystemBridgeWindowsSensors.sln
   deploy:
+    needs:
+      - build-dotnet
     uses: timmo001/workflows/.github/workflows/deploy-python-linux.yml@master
     secrets:
       PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
       PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
       PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
     with:
+      additional-artifacts-name: windowssensors-build
+      additional-artifacts-path: WindowsSensors/bin
       module-name: systembridgewindowssensors
+      pre-install-command: |
+        ls WindowsSensors/bin/net7.0-windows
+        pip install --upgrade --pre systembridgeshared
+        pip install .
       use-incremental: true
