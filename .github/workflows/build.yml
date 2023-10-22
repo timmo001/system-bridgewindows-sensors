@@ -18,5 +18,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build-dotnet:
+    uses: timmo001/workflows/.github/workflows/build-msbuild-windows.yml@master
+    with:
+      code-path: WindowsSensors
+      output-name: windowssensors-build
+      output-path: windowssensors/WindowsSensors/bin
+      package: SystemBridgeWindowsSensors.sln
   build:
-    uses: timmo001/workflows/.github/workflows/build-python-linux.yml@master
+    needs:
+      - build-dotnet
+    uses: timmo001/workflows/.github/workflows/build-python-windows.yml@master
+    with:
+      additional-artifacts-name: windowssensors-build
+      additional-artifacts-path: windowssensors/WindowsSensors/bin
