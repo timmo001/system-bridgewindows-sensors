@@ -23,7 +23,7 @@ permissions:
   security-events: write
 
 jobs:
-  codeql-analyze-csharp:
-    uses: timmo001/workflows/.github/workflows/codeql-csharp.yml@master
+  # codeql-analyze-csharp:
+  #   uses: timmo001/workflows/.github/workflows/codeql-csharp.yml@master
   codeql-analyze-python:
     uses: timmo001/workflows/.github/workflows/codeql-python.yml@master
