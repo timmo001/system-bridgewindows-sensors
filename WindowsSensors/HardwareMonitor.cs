@@ -39,29 +39,29 @@ namespace SystemBridgeWindowsSensors
       computer.Open();
       computer.Accept(new UpdateVisitor());
 
-      JArray arrRoot = new JArray();
+      JArray arrRoot = new();
 
       foreach (IHardware hardware in computer.Hardware)
       {
-        JObject objHardware = new JObject
+        JObject objHardware = new()
         {
           ["id"] = hardware.Identifier.ToString(),
           ["name"] = hardware.Name,
           ["type"] = hardware.HardwareType.ToString(),
         };
 
-        JArray arrSubHardware = new JArray();
+        JArray arrSubHardware = new();
 
         foreach (IHardware subhardware in hardware.SubHardware)
         {
-          JObject objSubHardware = new JObject
+          JObject objSubHardware = new()
           {
             ["id"] = subhardware.Identifier.ToString(),
             ["name"] = subhardware.Name,
             ["type"] = subhardware.HardwareType.ToString(),
           };
 
-          JArray arrSubHardwareSensors = new JArray();
+          JArray arrSubHardwareSensors = new();
 
           foreach (ISensor sensor in subhardware.Sensors)
           {

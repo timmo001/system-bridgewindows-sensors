@@ -23,7 +23,7 @@ namespace SystemBridgeWindowsSensors
       }
       catch (Exception) { }
 
-      JObject root = new JObject
+      JObject root = new()
       {
         ["hardware"] = hardwareData,
         ["nvidia"] = nvidiaData,
