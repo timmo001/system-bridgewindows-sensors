@@ -16,6 +16,7 @@ with open("requirements.txt", encoding="utf-8") as f:
 copytree(
     "WindowsSensors/bin/net7.0-windows",
     "systembridgewindowssensors/bin",
+    dirs_exist_ok=True,
 )
 
 package_data = []
