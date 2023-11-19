@@ -13,7 +13,7 @@ namespace SystemBridgeWindowsSensors
 
     public JObject GetData()
     {
-      NVIDIA.Initialize();
+      NVIDIA.Initialise();
 
       JObject chipset = new JObject
       {
