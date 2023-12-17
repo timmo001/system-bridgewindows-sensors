@@ -1,4 +1,4 @@
-"""Setup"""
+"""Setup."""
 import json
 import os
 from shutil import copytree
