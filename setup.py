@@ -14,7 +14,7 @@ with open("requirements.txt", encoding="utf-8") as f:
     requirements = f.read().splitlines()
 
 copytree(
-    "WindowsSensors/bin/net7.0-windows",
+    "WindowsSensors/bin/net8.0-windows8.0",
     "systembridgewindowssensors/bin",
     dirs_exist_ok=True,
 )
