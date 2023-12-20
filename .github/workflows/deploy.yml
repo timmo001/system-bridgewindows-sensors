@@ -29,7 +29,7 @@ jobs:
       additional-artifacts-path: WindowsSensors/bin
       module-name: systembridgewindowssensors
       pre-install-command: |
-        ls WindowsSensors/bin/net7.0-windows
+        ls WindowsSensors/bin/net8.0-windows8.0
         pip install --upgrade --pre systembridgeshared
         pip install .
       use-incremental: true
