@@ -15,7 +15,7 @@ namespace SystemBridgeWindowsSensors
     {
       NVIDIA.Initialize();
 
-      JObject chipset = new JObject
+      JObject chipset = new()
       {
         ["id"] = NVIDIA.ChipsetInfo.DeviceId,
         ["name"] = NVIDIA.ChipsetInfo.ChipsetName,
@@ -24,7 +24,7 @@ namespace SystemBridgeWindowsSensors
         ["vendor_name"] = NVIDIA.ChipsetInfo.VendorName,
       };
 
-      JArray displaysArr = new JArray();
+      JArray displaysArr = new();
       foreach (Display display in Display.GetDisplays())
       {
         displaysArr.Add(new JObject
@@ -50,34 +50,34 @@ namespace SystemBridgeWindowsSensors
         });
       }
 
-      JObject driver = new JObject
+      JObject driver = new()
       {
         ["branch_version"] = NVIDIA.DriverBranchVersion,
         ["interface_version"] = NVIDIA.InterfaceVersionString,
         ["version"] = NVIDIA.DriverVersion,
       };
 
-      JArray gpusArr = new JArray();
+      JArray gpusArr = [];
       foreach (PhysicalGPU gpu in PhysicalGPU.GetPhysicalGPUs())
       {
-        gpusArr.Add(new JObject
-        {
-          ["id"] = gpu.GPUId,
-          ["name"] = gpu.FullName,
-          ["bios_oem_revision"] = gpu.Bios.OEMRevision,
-          ["bios_revision"] = gpu.Bios.Revision,
-          ["bios_version"] = gpu.Bios.VersionString,
-          ["current_fan_speed_level"] = gpu.CoolerInformation.CurrentFanSpeedLevel,
-          ["current_fan_speed_rpm"] = gpu.CoolerInformation.CurrentFanSpeedInRPM,
-          ["current_temperature"] = gpu.ThermalInformation.CurrentThermalLevel,
-          ["driver_model"] = gpu.DriverModel,
-          ["memory_available"] = gpu.MemoryInformation.CurrentAvailableDedicatedVideoMemoryInkB,
-          ["memory_capacity"] = gpu.MemoryInformation.DedicatedVideoMemoryInkB,
-          ["memory_maker"] = gpu.MemoryInformation.RAMMaker.ToString(),
-          ["serial"] = gpu.Board.SerialNumber,
-          ["system_type"] = gpu.SystemType.ToString(),
-          ["type"] = gpu.GPUType.ToString(),
-        });
+        JObject gpuObj = new();
+        try { gpuObj["id"] = gpu.GPUId; } catch { }
+        try { gpuObj["name"] = gpu.FullName; } catch { }
+        try { gpuObj["bios_oem_revision"] = gpu.Bios.OEMRevision; } catch { }
+        try { gpuObj["bios_revision"] = gpu.Bios.Revision; } catch { }
+        try { gpuObj["bios_version"] = gpu.Bios.VersionString; } catch { }
+        try { gpuObj["current_fan_speed_level"] = gpu.CoolerInformation.CurrentFanSpeedLevel; } catch { }
+        try { gpuObj["current_fan_speed_rpm"] = gpu.CoolerInformation.CurrentFanSpeedInRPM; } catch { }
+        try { gpuObj["current_temperature"] = gpu.ThermalInformation.CurrentThermalLevel; } catch { }
+        try { gpuObj["driver_model"] = gpu.DriverModel; } catch { }
+        try { gpuObj["memory_available"] = gpu.MemoryInformation.CurrentAvailableDedicatedVideoMemoryInkB; } catch { }
+        try { gpuObj["memory_capacity"] = gpu.MemoryInformation.DedicatedVideoMemoryInkB; } catch { }
+        try { gpuObj["memory_maker"] = gpu.MemoryInformation.RAMMaker.ToString(); } catch { }
+        try { gpuObj["serial"] = gpu.Board.SerialNumber; } catch { }
+        try { gpuObj["system_type"] = gpu.SystemType.ToString(); } catch { }
+        try { gpuObj["type"] = gpu.GPUType.ToString(); } catch { }
+
+        gpusArr.Add(gpuObj);
       }
 
 
