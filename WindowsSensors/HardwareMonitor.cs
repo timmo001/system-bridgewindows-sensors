@@ -11,7 +11,7 @@ namespace SystemBridgeWindowsSensors
 
     public JArray GetData(string json)
     {
-      Computer computer = new Computer();
+      Computer computer = new();
 
       if (json.StartsWith("{") && json.EndsWith("}"))
       {
@@ -39,7 +39,7 @@ namespace SystemBridgeWindowsSensors
       computer.Open();
       computer.Accept(new UpdateVisitor());
 
-      JArray arrRoot = new();
+      JArray arrRoot = [];
 
       foreach (IHardware hardware in computer.Hardware)
       {
@@ -50,7 +50,7 @@ namespace SystemBridgeWindowsSensors
           ["type"] = hardware.HardwareType.ToString(),
         };
 
-        JArray arrSubHardware = new();
+        JArray arrSubHardware = [];
 
         foreach (IHardware subhardware in hardware.SubHardware)
         {
@@ -61,7 +61,7 @@ namespace SystemBridgeWindowsSensors
             ["type"] = subhardware.HardwareType.ToString(),
           };
 
-          JArray arrSubHardwareSensors = new();
+          JArray arrSubHardwareSensors = [];
 
           foreach (ISensor sensor in subhardware.Sensors)
           {
@@ -79,7 +79,7 @@ namespace SystemBridgeWindowsSensors
 
         objHardware["subhardware"] = arrSubHardware;
 
-        JArray arrSensors = new JArray();
+        JArray arrSensors = [];
 
         foreach (ISensor sensor in hardware.Sensors)
         {
