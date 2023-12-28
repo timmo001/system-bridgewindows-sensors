@@ -41,7 +41,7 @@ setup(
     keywords="system-bridge windows",
     author="Aidan Timson (Timmo)",
     author_email="aidan@timmo.dev",
-    license="MIT",
+    license="Apache-2.0",
     url="https://github.com/timmo001/system-bridge-windows-sensors",
     packages=find_packages(exclude=["tests", "generator"]),
     package_data={"": package_data},
