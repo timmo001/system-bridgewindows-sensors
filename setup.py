@@ -33,7 +33,7 @@ for root, directories, files in os.walk("systembridgewindowssensors/bin"):
             .replace("\\", "/", -1)
         )
 
-print(json.dumps(package_data))
+print(json.dumps(package_data))  # noqa: T201
 
 setup(
     name="systembridgewindowssensors",
