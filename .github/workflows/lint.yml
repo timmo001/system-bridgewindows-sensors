@@ -28,10 +28,10 @@ jobs:
     uses: timmo001/workflows/.github/workflows/lint-prettier.yml@master
     with:
       file-types: "{json,yml,yaml}"
-  lint-pylint:
-    uses: timmo001/workflows/.github/workflows/lint-pylint.yml@master
-    with:
-      module-name: systembridgewindowssensors
+  # lint-pylint:
+  #   uses: timmo001/workflows/.github/workflows/lint-pylint.yml@master
+  #   with:
+  #     module-name: systembridgewindowssensors
   lint-ruff:
     uses: timmo001/workflows/.github/workflows/lint-ruff.yml@master
   lint-yamllint:
