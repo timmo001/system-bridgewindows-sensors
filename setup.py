@@ -35,17 +35,23 @@ for root, directories, files in os.walk("systembridgewindowssensors/bin"):
 
 print(json.dumps(package_data))  # noqa: T201
 
+with open("README.md", encoding="utf-8") as f:
+    readme = f.read()
+
 setup(
     name="systembridgewindowssensors",
-    description="System Bridge Windows Sensors",
-    keywords="system-bridge windows",
     author="Aidan Timson (Timmo)",
     author_email="aidan@timmo.dev",
+    description="System Bridge Windows Sensors",
+    keywords="system-bridge windows",
     license="Apache-2.0",
+    long_description=readme,
+    long_description_content_type="text/markdown",
     url="https://github.com/timmo001/system-bridge-windows-sensors",
+    install_requires=requirements,
     packages=find_packages(exclude=["tests", "generator"]),
     package_data={"": package_data},
-    install_requires=requirements,
+    python_requires=">=3.11",
     setup_requires=requirements_setup,
     use_incremental=True,
 )
