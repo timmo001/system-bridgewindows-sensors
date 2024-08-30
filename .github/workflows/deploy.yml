@@ -40,7 +40,7 @@ jobs:
           name: ${{ env.ADDITIONAL_ARTIFACTS_NAME }}
           path: ${{ env.ADDITIONAL_ARTIFACTS_PATH }}
       - name: 🏗 Set up Python
-        uses: actions/setup-python@v5.1.1
+        uses: actions/setup-python@v5.2.0
         with:
           python-version: "3.12"
           architecture: "x64"
